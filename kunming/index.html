@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#173b45" />
+  <meta name="description" content="2026年9月昆明、抚仙湖、建水五人一狗自驾旅行路书" />
+  <title>云上慢行｜昆明家庭路书</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23173b45'/%3E%3Cpath d='M8 39c9-8 17-8 25 0s15 8 23 0v10H8z' fill='%237db9bd'/%3E%3Ccircle cx='45' cy='19' r='8' fill='%23e47f58'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --ink: #17333a;
+      --muted: #64777a;
+      --lake: #2f7a83;
+      --lake-soft: #dcebed;
+      --clay: #c86443;
+      --clay-soft: #f4dfd4;
+      --paper: #f7f3ea;
+      --card: #fffdf8;
+      --line: rgba(23, 51, 58, .12);
+      --shadow: 0 12px 34px rgba(24, 57, 62, .10);
+      --safe-bottom: calc(78px + env(safe-area-inset-bottom));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .app {
+      width: min(100%, 680px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding-bottom: var(--safe-bottom);
+      background:
+        radial-gradient(circle at 95% 15%, rgba(200,100,67,.10), transparent 24rem),
+        var(--paper);
+    }
+
+    .hero {
+      min-height: 330px;
+      padding: max(24px, env(safe-area-inset-top)) 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      background:
+        linear-gradient(180deg, rgba(10,38,45,.22), rgba(10,38,45,.82)),
+        url("assets/fuxian-lake.webp") center 48% / cover no-repeat;
+      border-radius: 0 0 28px 28px;
+      box-shadow: var(--shadow);
+    }
+    .hero-top, .hero-meta, .quick-row, .section-head, .day-top, .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .eyebrow {
+      margin: 0 0 6px;
+      font-size: 13px;
+      letter-spacing: .16em;
+      opacity: .84;
+    }
+    h1 { margin: 0; font-size: clamp(34px, 10vw, 48px); line-height: 1.08; letter-spacing: -.04em; }
+    .hero-sub { margin: 9px 0 0; font-size: 15px; opacity: .9; }
+    .countdown {
+      padding: 7px 11px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      background: rgba(13,49,56,.36);
+      backdrop-filter: blur(10px);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .hero-meta {
+      align-items: stretch;
+      padding: 13px 15px;
+      border: 1px solid rgba(255,255,255,.23);
+      border-radius: 18px;
+      background: rgba(14,47,53,.44);
+      backdrop-filter: blur(12px);
+    }
+    .meta-block { flex: 1; }
+    .meta-block + .meta-block { padding-left: 14px; border-left: 1px solid rgba(255,255,255,.20); }
+    .meta-label { display: block; font-size: 12px; opacity: .72; }
+    .meta-value { display: block; margin-top: 3px; font-weight: 650; font-size: 15px; }
+
+    main { padding: 20px 16px 8px; }
+    .view { display: none; animation: fade .2s ease; }
+    .view.active { display: block; }
+    @keyframes fade { from { opacity: .2; transform: translateY(3px); } }
+
+    .section { margin-bottom: 22px; }
+    .section-head { margin: 0 2px 11px; }
+    .section-head h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
+    .section-note { color: var(--muted); font-size: 13px; }
+
+    .today-card, .panel, .day-card, .check-group, details {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: 0 5px 20px rgba(24,57,62,.055);
+    }
+    .today-card {
+      position: relative;
+      overflow: hidden;
+      padding: 17px;
+      background: linear-gradient(135deg, #173b45, #2e6f76);
+      color: #fff;
+    }
+    .today-card::after {
+      content: "";
+      position: absolute;
+      width: 130px; height: 130px;
+      right: -35px; bottom: -60px;
+      border: 24px solid rgba(255,255,255,.09);
+      border-radius: 50%;
+    }
+    .today-label { margin: 0 0 4px; font-size: 13px; opacity: .75; }
+    .today-title { margin: 0; font-size: 22px; }
+    .today-next { margin: 9px 0 0; font-size: 14px; opacity: .9; }
+    .today-btn {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 8px 12px;
+      border: 0;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .route-line { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+    .route-stop { position: relative; text-align: center; }
+    .route-stop:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 14px;
+      left: 58%;
+      width: 84%;
+      border-top: 1px dashed rgba(47,122,131,.42);
+    }
+    .stop-dot {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 29px; height: 29px;
+      margin: 0 auto 7px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--lake-soft);
+      color: var(--lake);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .route-stop:nth-child(3) .stop-dot { background: var(--clay-soft); color: var(--clay); }
+    .stop-name { font-size: 13px; font-weight: 650; }
+    .stop-time { display: block; color: var(--muted); font-size: 11px; }
+
+    .day-list { display: grid; gap: 10px; }
+    .day-card { width: 100%; padding: 14px 15px; text-align: left; cursor: pointer; }
+    .day-card.current { border-color: rgba(47,122,131,.42); background: #f7fcfb; }
+    .day-date { color: var(--lake); font-size: 13px; font-weight: 700; }
+    .day-title { margin: 2px 0 0; font-size: 17px; font-weight: 700; }
+    .day-desc { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+    .tag { padding: 4px 8px; border-radius: 999px; background: var(--lake-soft); color: var(--lake); font-size: 12px; white-space: nowrap; }
+    .tag.clay { background: var(--clay-soft); color: var(--clay); }
+
+    .quick-row { align-items: stretch; }
+    .quick-link {
+      flex: 1;
+      min-height: 58px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255,253,248,.72);
+    }
+    .quick-link strong { font-size: 14px; }
+    .quick-link span { color: var(--muted); font-size: 12px; }
+
+    .day-tabs { display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
+    .day-tabs::-webkit-scrollbar { display: none; }
+    .day-tab {
+      min-width: 58px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--card);
+      text-align: center;
+      cursor: pointer;
+    }
+    .day-tab.active { border-color: var(--lake); background: var(--lake); color: #fff; }
+    .day-tab strong, .day-tab span { display: block; }
+    .day-tab strong { font-size: 15px; }
+    .day-tab span { font-size: 11px; opacity: .72; }
+    .back-btn {
+      margin-bottom: 12px;
+      padding: 7px 0;
+      border: 0;
+      background: none;
+      color: var(--lake);
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .day-detail { display: none; }
+    .day-detail.active { display: block; }
+    .day-hero { margin-bottom: 14px; }
+    .day-kicker { margin: 0 0 2px; color: var(--lake); font-size: 13px; font-weight: 700; }
+    .day-hero h2 { margin: 0; font-size: 26px; line-height: 1.25; }
+    .day-summary { margin: 7px 0 0; color: var(--muted); }
+    .timeline { position: relative; margin: 0; padding: 2px 0 0 26px; list-style: none; }
+    .timeline::before { content: ""; position: absolute; top: 11px; bottom: 15px; left: 7px; border-left: 1px solid rgba(47,122,131,.32); }
+    .timeline li { position: relative; padding: 0 0 17px; }
+    .timeline li::before { content: ""; position: absolute; width: 9px; height: 9px; left: -23px; top: 7px; border: 3px solid var(--card); border-radius: 50%; background: var(--lake); box-shadow: 0 0 0 1px rgba(47,122,131,.3); }
+    .timeline time { display: inline-block; min-width: 55px; color: var(--lake); font-size: 13px; font-weight: 700; }
+    .timeline strong { font-size: 15px; }
+    .timeline p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .timeline li.drive {
+      margin: -5px 0 14px;
+      padding: 9px 11px;
+      border-radius: 12px;
+      background: var(--lake-soft);
+    }
+    .timeline li.drive::before { top: 14px; background: var(--card); border-color: var(--lake); }
+    .timeline li.drive time { min-width: 42px; }
+    .timeline li.drive strong { color: var(--lake); font-size: 14px; }
+    .timeline li.drive p { color: #527176; }
+
+    .panel { padding: 15px; margin-top: 12px; }
+    .panel-title { margin: 0 0 8px; font-size: 15px; }
+    .tip { display: flex; gap: 9px; margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+    .tip::before { content: "•"; color: var(--clay); font-weight: 900; }
+    .map-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
+    .map-link { padding: 10px; border-radius: 12px; background: var(--lake-soft); color: var(--lake); font-size: 13px; font-weight: 650; text-align: center; }
+
+    .check-group { padding: 6px 14px; margin-bottom: 12px; }
+    .check-title { margin: 10px 0 5px; font-size: 15px; }
+    .check-item { display: flex; align-items: flex-start; gap: 11px; padding: 10px 0; border-top: 1px solid var(--line); cursor: pointer; }
+    .check-item:first-of-type { border-top: 0; }
+    .check-item input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--clay); }
+    .check-copy { flex: 1; }
+    .check-copy strong { display: block; font-size: 14px; }
+    .check-copy small { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; }
+    .check-item.done .check-copy { opacity: .48; text-decoration: line-through; }
+    .progress-wrap { margin-bottom: 15px; }
+    .progress-meta { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 13px; }
+    .progress { height: 8px; overflow: hidden; border-radius: 999px; background: rgba(47,122,131,.12); }
+    .progress-bar { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--lake), #79b9b9); transition: width .2s ease; }
+
+    details { padding: 0 15px; margin-bottom: 10px; }
+    summary { padding: 14px 0; font-weight: 700; cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--lake); }
+    details[open] summary::after { content: "−"; }
+    .detail-body { padding: 0 0 14px; color: var(--muted); font-size: 14px; }
+    .detail-row { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-top: 1px solid var(--line); }
+    .detail-row strong { color: var(--ink); text-align: right; }
+    .alert { padding: 12px 14px; border-left: 3px solid var(--clay); border-radius: 10px; background: var(--clay-soft); font-size: 13px; }
+    .contact-row { margin-top: 10px; }
+    .contact-link { flex: 1; padding: 11px; border-radius: 12px; background: var(--ink); color: #fff; text-align: center; font-weight: 650; }
+
+    .collection-intro {
+      margin-bottom: 14px;
+      padding: 14px 15px;
+      border-left: 3px solid var(--clay);
+      border-radius: 4px 15px 15px 4px;
+      background: rgba(255,253,248,.74);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .scrap {
+      position: relative;
+      padding: 0 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(24,57,62,.045);
+    }
+    .scrap:nth-of-type(3n + 1) { border-left: 3px solid rgba(47,122,131,.56); }
+    .scrap:nth-of-type(3n + 2) { border-left: 3px solid rgba(200,100,67,.56); }
+    .scrap summary {
+      position: relative;
+      padding: 14px 28px 14px 0;
+    }
+    .scrap summary::after {
+      content: "⌄";
+      position: absolute;
+      right: 0;
+      top: 20px;
+      color: var(--lake);
+      font-size: 18px;
+      line-height: 1;
+    }
+    .scrap[open] summary::after { content: "⌃"; }
+    .scrap-title { display: block; font-size: 16px; line-height: 1.35; }
+    .scrap-summary { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 400; }
+    .scrap-body { padding: 0 0 15px; color: var(--muted); font-size: 14px; }
+    .scrap-item { padding: 10px 0; border-top: 1px dashed rgba(23,51,58,.14); }
+    .scrap-item:first-child { padding-top: 3px; border-top: 0; }
+    .scrap-item strong { color: var(--ink); }
+    .scrap-item p { margin: 4px 0 0; }
+    .scrap-list { margin: 5px 0 0; padding-left: 1.15em; }
+    .scrap-list li { margin: 4px 0; }
+    .mini-tag {
+      display: inline-flex;
+      margin-left: 5px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--lake-soft);
+      color: var(--lake);
+      font-size: 11px;
+      font-weight: 700;
+      vertical-align: 1px;
+    }
+    .mini-tag.warn { background: var(--clay-soft); color: var(--clay); }
+
+    .bottom-nav {
+      position: fixed;
+      z-index: 50;
+      left: 50%; bottom: 0;
+      width: min(100%, 680px);
+      padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid rgba(23,51,58,.10);
+      background: rgba(255,253,248,.94);
+      backdrop-filter: blur(16px);
+      transform: translateX(-50%);
+    }
+    .nav-btn { padding: 7px 4px; border: 0; border-radius: 11px; background: transparent; color: var(--muted); font-size: 12px; cursor: pointer; }
+    .nav-btn b { display: block; margin-bottom: 1px; font-size: 18px; line-height: 1; font-weight: 500; }
+    .nav-btn.active { background: var(--lake-soft); color: var(--lake); font-weight: 700; }
+    footer { padding: 6px 3px 14px; color: var(--muted); font-size: 11px; text-align: center; }
+
+    @media (min-width: 700px) {
+      body { padding: 24px 0; }
+      .app { min-height: calc(100vh - 48px); border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); }
+      .hero { border-radius: 0 0 28px 28px; }
+      .bottom-nav { bottom: 24px; border-radius: 0 0 28px 28px; }
+    }
+    @media (max-width: 380px) {
+      .hero { min-height: 306px; padding-inline: 16px; }
+      main { padding-inline: 12px; }
+      .hero-meta { padding-inline: 12px; }
+      .meta-value { font-size: 14px; }
+      .route-stop:not(:last-child)::after { width: 78%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <p class="eyebrow">YUNNAN · 2026</p>
+          <h1>云上慢行</h1>
+          <p class="hero-sub">昆明 · 抚仙湖 · 建水｜五人一狗</p>
+        </div>
+        <span class="countdown" id="countdown">9月23日出发</span>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-block">
+          <span class="meta-label">去程</span>
+          <span class="meta-value">CZ5973 · 12:55</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">返程</span>
+          <span class="meta-value">G202 · 10:45</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">当地</span>
+          <span class="meta-value">6座自驾</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="view active" id="overview" aria-label="行程总览">
+        <div class="section">
+          <div class="section-head"><h2>当前提醒</h2><span class="section-note">自动随日期更新</span></div>
+          <div class="today-card">
+            <p class="today-label" id="todayLabel">出发前</p>
+            <h3 class="today-title" id="todayTitle">整理证件与老三出行包</h3>
+            <p class="today-next" id="todayNext">交通、住宿、宠物运输和车辆均已预订，出发前按清单装包即可。</p>
+            <button class="today-btn" id="todayBtn" type="button">查看行前清单</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>这次怎么走</h2><span class="section-note">5天4晚</span></div>
+          <div class="panel">
+            <div class="route-line" aria-label="长沙至云南旅行路线">
+              <div class="route-stop"><span class="stop-dot">1</span><span class="stop-name">长沙</span><span class="stop-time">飞机</span></div>
+              <div class="route-stop"><span class="stop-dot">2</span><span class="stop-name">昆明</span><span class="stop-time">办证</span></div>
+              <div class="route-stop"><span class="stop-dot">3</span><span class="stop-name">抚仙湖</span><span class="stop-time">日落</span></div>
+              <div class="route-stop"><span class="stop-dot">4</span><span class="stop-name">建水</span><span class="stop-time">古城</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>逐日行程</h2><span class="section-note">点开查看</span></div>
+          <div class="day-list" id="overviewDays"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>路上常用</h2></div>
+          <div class="quick-row">
+            <a class="quick-link" href="tel:95539"><strong>南航 95539</strong><span>宠物托运确认</span></a>
+            <a class="quick-link" href="tel:12306"><strong>铁路 12306</strong><span>宠物运输确认</span></a>
+          </div>
+        </div>
+        <footer>封面摄影来源：人民周刊网 · 抚仙湖光影｜行程信息更新于 2026.09</footer>
+      </section>
+
+      <section class="view" id="days" aria-label="每日路书">
+        <button class="back-btn" type="button" data-go="overview">← 返回总览</button>
+        <div class="day-tabs" id="dayTabs" role="tablist"></div>
+        <div id="dayDetails"></div>
+      </section>
+
+      <section class="view" id="checklist" aria-label="行前清单">
+        <div class="section-head"><h2>行前清单</h2><span class="section-note" id="progressText">0 / 0</span></div>
+        <div class="progress-wrap"><div class="progress"><div class="progress-bar" id="progressBar"></div></div></div>
+        <div id="checkGroups"></div>
+      </section>
+
+      <section class="view" id="collection" aria-label="攻略收藏夹">
+        <div class="section-head"><h2>攻略收藏夹</h2><span class="section-note">临时决定时再翻</span></div>
+        <div class="collection-intro">主行程不变。天气、宠物政策和当天状态，永远比“完成景点”更重要。</div>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🐕 抚仙湖｜老三去哪玩</span><span class="scrap-summary">真正适合老三的，不一定是收费景区。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>崖顶公园</strong><span class="mini-tag">优先</span><span class="mini-tag">带狗友好</span><p>大草坪、湖景、人相对少，适合活动。草地注意虫子和草籽，提前做好驱虫。</p></div>
+            <div class="scrap-item"><strong>马房村</strong><span class="mini-tag">优先</span><p>湖边加草坪，免费开阔；早晚人少时尤其适合遛狗。</p></div>
+            <div class="scrap-item"><strong>红沙滩</strong><p>评价分化，但多篇带狗实测体验不错。人少时可玩沙看浪，浅色狗注意红沙染毛。</p></div>
+            <div class="scrap-item"><strong>五龙湖</strong><span class="mini-tag warn">待确认</span><p>2026年8月已有游客反馈疑似禁止宠物，可能与黑天鹅有关。出发前未重新确认就不去。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🌅 抚仙湖｜哪里看日落</span><span class="scrap-summary">不追固定机位，看天气决定。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>优先区域：太阳山一带</strong><span class="mini-tag">日落</span><p>自在汐岸、半日岛咖啡、太阳山临湖区域、S湾沿线均可临时选择。</p></div>
+            <div class="scrap-item"><strong>判断原则</strong><p>哪里方便、云量合适就去哪里。阴天不为“日落打卡”额外赶路。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🌊 抚仙湖｜顺路备选</span><span class="scrap-summary">只在顺路、天气好、有余力时停。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>抚海湾湿地公园</strong><p>有草坪、栈道和湖景，但评价分化且风可能很大。适合与马房村顺路经过，不值得跨湖专程去。</p></div>
+            <div class="scrap-item"><strong>明星鱼洞</strong><p>水质和景色不错，热门时人较多；时间充足且不拥挤再去。</p></div>
+            <div class="scrap-item"><strong>S湾</strong><p>顺路停车即可，不作为正式景点。</p></div>
+            <div class="scrap-item"><strong>时光栈道</strong><p>全长约28km，无需完整走，环湖遇到漂亮的一段再散步。</p></div>
+            <div class="scrap-item"><strong>湾子沟 / 石滩</strong><p>野景备选，仅在天气很好且时间充裕时考虑。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🍓 抚仙湖｜自驾补给</span><span class="scrap-summary">水果和路上零食，可集中买一次。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>柿花园综合农贸市场</strong><p>可留意花香蓝莓、草莓、木瓜、百香果、甘蔗和当地水果。顺路再去，不单独绕行。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">⚠️ 抚仙湖｜实用提醒</span><span class="scrap-summary">天气决定抚仙湖大部分体验。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>看天行动</strong><p>晴天和阴天湖水颜色差异很大；湖边紫外线强、风可能很大，昼夜温差明显。</p></div>
+            <div class="scrap-item"><strong>带老三</strong><ul class="scrap-list"><li>多补水，避开正午暴晒</li><li>草地回来检查草籽和虫子</li><li>陌生狗较多时不要立即松绳</li></ul></div>
+            <div class="scrap-item"><strong>保护湖泊</strong><p>不要投喂海鸥，避免人为投喂影响水质和生态。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🏮 建水｜值得去什么</span><span class="scrap-summary">建水不用赶，慢慢走才是重点。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>双龙桥</strong><span class="mini-tag">优先</span><span class="mini-tag">日落</span><p>古桥、田野和傍晚光线，是建水第一印象。</p></div>
+            <div class="scrap-item"><strong>大板井</strong><span class="mini-tag">优先</span><p>地方生活感很强，可与附近豆腐坊一起走。</p></div>
+            <div class="scrap-item"><strong>建水古城</strong><p>不制定复杂路线，早晨或晚上随便走，重点是老街和吃东西。</p></div>
+            <div class="scrap-item"><strong>乡会桥车站</strong><p>1936年的老米轨车站，氛围自然，适合自驾串联。</p></div>
+            <div class="scrap-item"><strong>蚁工坊</strong><span class="mini-tag">拍照</span><p>宠物友好、晴天更出片；实际面积较小，约30分钟—1小时即可。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🚫 建水｜可以放弃</span><span class="scrap-summary">不因“来都来了”增加任务。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>建水小火车</strong><p>不能带狗、耗时长、自驾替代性强，不坐。</p></div>
+            <div class="scrap-item"><strong>五龙湖</strong><p>近期宠物政策存在风险，不进入正式行程。</p></div>
+            <div class="scrap-item"><strong>朱家花园 / 文庙</strong><p>不能带狗。父母特别感兴趣时，可临时决定是否由部分成员进入，不作为全员共同任务。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🍜 建水｜吃什么</span><span class="scrap-summary">先吃草芽米线、烧豆腐和建水烧烤。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>马市街三等家</strong><p>可选烧豆腐、凉米线、牛肉草芽米线。</p></div>
+            <div class="scrap-item"><strong>板井豆腐坊</strong><p>与大板井一起去，豆浆、豆花更有地方感。</p></div>
+            <div class="scrap-item"><strong>翻身牛肉</strong><p>本地推荐较多，但游客评价存在分化。顺路可吃，不必专程排队。</p></div>
+            <div class="scrap-item"><strong>山山茶茶</strong><p>牛奶可乐比较有记忆点。</p></div>
+          </div>
+        </details>
+
+        <details class="scrap">
+          <summary><span class="scrap-title">🏠 住宿收藏</span><span class="scrap-summary">停车和宠物政策，比网红装修重要。</span></summary>
+          <div class="scrap-body">
+            <div class="scrap-item"><strong>抚仙湖</strong><p>优先太阳山区域宠物友好民宿；带露台或院子更适合老三，车辆能到门口。</p></div>
+            <div class="scrap-item"><strong>建水</strong><p>备选：松韵居、清璞·叁拾叁号院。预订前确认犬只体重限制、清洁费和停车条件。</p></div>
+          </div>
+        </details>
+      </section>
+
+      <section class="view" id="info" aria-label="重要信息">
+        <div class="section-head"><h2>重要信息</h2><span class="section-note">路上随时查</span></div>
+
+        <details open>
+          <summary>交通凭证</summary>
+          <div class="detail-body">
+            <div class="detail-row"><span>去程</span><strong>CZ5973<br>12:55—15:00</strong></div>
+            <div class="detail-row"><span>返程</span><strong>G202<br>10:45—16:15</strong></div>
+            <div class="detail-row"><span>用车</span><strong>大众途安 · 6座<br>长水机场取 · 昆明南站还</strong></div>
+          </div>
+        </details>
+
+        <details>
+          <summary>老三手续</summary>
+          <div class="detail-body">
+            <div class="alert">9月24日上午在昆明办理返程所需的动物检疫合格证明；办完当场核对目的地、承运人和有效期。</div>
+            <div class="detail-row"><span>体重</span><strong>约12.5kg</strong></div>
+            <div class="detail-row"><span>去程</span><strong>南航有氧舱</strong></div>
+            <div class="detail-row"><span>返程</span><strong>G202宠物运输</strong></div>
+          </div>
+        </details>
+
+        <details>
+          <summary>住宿与预算</summary>
+          <div class="detail-body">
+            <div class="detail-row"><span>9月23日 · ¥540</span><strong>喆啡酒店<br>云南大学翠湖店</strong></div>
+            <div class="detail-row"><span>9月24日 · ¥500</span><strong>万科太阳山<br>3室5床湖景房</strong></div>
+            <div class="detail-row"><span>9月25日 · ¥440</span><strong>临语民宿<br>建水古城朝阳楼店</strong></div>
+            <div class="detail-row"><span>9月26日 · ¥500</span><strong>季枫酒店<br>昆明高铁南站万达广场店</strong></div>
+            <div class="detail-row"><span>已预订支出</span><strong>¥8,590</strong></div>
+            <div class="detail-row"><span>剩余预算</span><strong>¥6,410</strong></div>
+          </div>
+        </details>
+
+        <details>
+          <summary>已预订费用</summary>
+          <div class="detail-body">
+            <div class="detail-row"><span>机票</span><strong>¥2,060</strong></div>
+            <div class="detail-row"><span>火车票</span><strong>¥2,700</strong></div>
+            <div class="detail-row"><span>四晚住宿</span><strong>¥1,980</strong></div>
+            <div class="detail-row"><span>老三两段运输</span><strong>¥1,300</strong></div>
+            <div class="detail-row"><span>租车</span><strong>¥550</strong></div>
+          </div>
+        </details>
+
+        <div class="panel">
+          <h3 class="panel-title">紧急联系</h3>
+          <div class="contact-row">
+            <a class="contact-link" href="tel:95539">南航</a>
+            <a class="contact-link" href="tel:12306">铁路</a>
+            <a class="contact-link" href="tel:120">急救</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="页面导航">
+      <button class="nav-btn active" type="button" data-go="overview"><b>⌂</b>总览</button>
+      <button class="nav-btn" type="button" data-go="days"><b>▤</b>每日</button>
+      <button class="nav-btn" type="button" data-go="collection"><b>♡</b>收藏</button>
+      <button class="nav-btn" type="button" data-go="checklist"><b>✓</b>清单</button>
+      <button class="nav-btn" type="button" data-go="info"><b>···</b>信息</button>
+    </nav>
+  </div>
+
+  <script>
+    const tripDays = [
+      {
+        date: "09.23", weekday: "周三", title: "长沙 → 昆明", short: "落地取车，只休整不赶景点", tag: "抵达日", tone: "lake",
+        summary: "把精力留给后面。取到老三和途安后，直接入住喆啡酒店。",
+        timeline: [
+          ["10:00", "抵达机场", "预留宠物托运办理时间，现场再次确认有氧舱。"],
+          ["12:55", "CZ5973 起飞", "长沙黄花机场 → 昆明长水机场。"],
+          ["15:00", "抵达昆明", "领取老三、检查状态和航空箱。"],
+          ["16:00", "机场取车", "大众途安6座，商家送车到机场。"],
+          ["驾车", "约45—60分钟", "昆明长水机场 → 喆啡酒店；晚高峰以实时导航为准。", "drive"],
+          ["18:00", "入住喆啡酒店", "云南大学翠湖店。晚餐就近解决，不再安排正式景点。"]
+        ],
+        tips: ["落地后的领取、取车和进城时间有弹性，当晚不设置必达景点。", "老三托运后先饮少量水，观察精神和呼吸状态。"],
+        maps: [["昆明长水机场", "昆明长水国际机场"], ["喆啡酒店", "喆啡酒店昆明云南大学翠湖店"]]
+      },
+      {
+        date: "09.24", weekday: "周四", title: "昆明 → 抚仙湖", short: "上午办证，下午看湖与日落", tag: "湖景日落", tone: "lake",
+        summary: "办完老三返程证明后直接前往太阳山，下午只休息、看湖和等日落。",
+        timeline: [
+          ["08:10", "酒店出发", "携带免疫记录、犬只、身份证及运输信息。"],
+          ["驾车", "约25—35分钟", "喆啡酒店 → 五华区农业农村局，早高峰以实时导航为准。", "drive"],
+          ["09:00", "办理合格证明", "核对目的地、承运人、有效期与盖章。"],
+          ["11:30", "午餐", "办完再出发，不把时间卡得太紧。"],
+          ["驾车", "约1小时40分钟—2小时", "五华区农业农村局 → 万科抚仙湖太阳山。", "drive"],
+          ["14:00", "太阳山入住", "3室5床湖景房。下午休息、喝咖啡、遛狗。"],
+          ["17:30", "太阳山一带看日落", "自在汐岸、半日岛咖啡或临湖区域择一，哪里方便去哪里。"]
+        ],
+        tips: ["不环湖刷景点，阴天也不为追日落机位额外赶路。", "太阳山内部上下山也需要开车，短途通常预留10—20分钟。"],
+        maps: [["办证点", "昆明市五华区龙泉路536号五华区农业农村局"], ["太阳山", "万科抚仙湖太阳山"]]
+      },
+      {
+        date: "09.25", weekday: "周五", title: "抚仙湖 → 建水", short: "崖顶看湖，双龙桥等日落", tag: "湖景古桥", tone: "clay",
+        summary: "上午沿东岸向南到崖顶公园，再顺路前往建水；不回北岸折返。",
+        timeline: [
+          ["08:30", "湖景早餐后退房", "不赶早，在太阳山慢慢开始一天。"],
+          ["驾车", "约50—65分钟", "太阳山住宿 → 星空小镇·崖顶公园。", "drive"],
+          ["10:00", "崖顶公园", "大草坪俯瞰抚仙湖，停留约1—2小时。"],
+          ["驾车", "约1小时45分钟—2小时15分钟", "崖顶公园 → 临语民宿（建水古城朝阳楼店）。", "drive"],
+          ["14:30", "建水入住、午休", "给父母和老三留足休息时间。"],
+          ["驾车", "约15—20分钟", "临语民宿 → 双龙桥。", "drive"],
+          ["16:30", "双龙桥", "古桥、稻田与日落，现场按光线调整停留时间。"],
+          ["驾车", "约15—20分钟", "双龙桥 → 建水古城。", "drive"],
+          ["19:00", "古城夜游", "临安路小段散步，吃豆腐、汽锅鸡或草芽米线。"]
+        ],
+        tips: ["马房村、红沙滩和波息湾保留在收藏夹，不列为当天必达点。", "崖顶草地注意虫子和草籽，老三活动后及时检查。"],
+        maps: [["崖顶公园", "抚仙湖星空小镇崖顶公园"], ["临语民宿", "临语民宿建水古城朝阳楼店"], ["双龙桥", "建水双龙桥"]]
+      },
+      {
+        date: "09.26", weekday: "周六", title: "建水 → 昆明南", short: "生活感与米轨二选一，下午返昆", tag: "建水日常", tone: "clay",
+        summary: "不坐建水小火车。上午从井水、豆腐和老街进入当地生活，再按状态选择乡会桥或蚁工坊。",
+        timeline: [
+          ["07:20", "民宿出发", "轻装开始建水的生活感路线。"],
+          ["驾车", "约5—10分钟", "临语民宿 → 大板井；停车后周边步行。", "drive"],
+          ["07:30", "大板井与豆腐坊", "看井水、喝豆浆、吃豆花，感受建水生活。"],
+          ["步行/驾车", "约5—10分钟", "大板井 → 建水古城。", "drive"],
+          ["09:00", "建水古城慢逛", "烧豆腐、米线、老街，路线不用规划太细。"],
+          ["驾车", "乡会桥20—25分钟 / 蚁工坊10—15分钟", "从建水古城出发，二选一。", "drive"],
+          ["10:30", "乡会桥 / 蚁工坊二选一", "想看自然米轨选乡会桥；想拍照选蚁工坊，停留不超过1小时。"],
+          ["13:30", "午餐后返回昆明", "不再增加其他目的地。"],
+          ["驾车", "约2小时20分钟—2小时50分钟", "乡会桥或蚁工坊 → 季枫酒店（昆明高铁南站万达广场店）。", "drive"],
+          ["16:30", "季枫酒店入住", "晚间休息并整理第二天铁路运输材料。"]
+        ],
+        tips: ["乡会桥更自然，蚁工坊实际不大；二者不要都赶。", "铁路道口和狭窄公路不要停车拍照。"],
+        maps: [["大板井", "建水大板井"], ["乡会桥", "建水乡会桥车站"], ["蚁工坊", "建水蚁工坊"], ["昆明南站", "昆明南站"]]
+      },
+      {
+        date: "09.27", weekday: "周日", title: "昆明 → 长沙", short: "提前进站，办理老三铁路运输", tag: "返程日", tone: "lake",
+        summary: "五人分工办理还车、行李和老三运输，按约定时间抵达车站即可。",
+        timeline: [
+          ["07:00", "起床早餐", "再次检查证件、检疫证明与运输箱。"],
+          ["08:05", "酒店出发", "全员带齐行李和老三。"],
+          ["驾车", "约10—15分钟", "季枫酒店 → 昆明南站。", "drive"],
+          ["08:20", "抵达昆明南站", "一人交车、一人办理老三运输，其余人负责行李。"],
+          ["08:30", "商家取车", "同时按12306预约信息交接老三。"],
+          ["10:45", "G202 发车", "昆明南 → 长沙南。"],
+          ["16:15", "抵达长沙", "按现场指引领取老三。"]
+        ],
+        tips: ["还车与宠物运输并行办理，不需要全员等车辆交接。", "检疫证明、身份证和托运订单放在随身包中。"],
+        maps: [["昆明南站", "昆明南站"], ["长沙南站", "长沙南站"]]
+      }
+    ];
+
+    const checkGroups = [
+      { title: "证件与手续", items: [
+        ["vaccine", "疫苗本与免疫信息", "原件随身携带，另存手机照片"],
+        ["certificate-kit", "昆明办证材料", "犬只、身份证、免疫材料与运输信息"],
+        ["certificate-check", "办证后核对信息", "目的地、承运人、有效期与盖章"],
+        ["ids", "身份证与全部订单", "五人证件集中复核"]
+      ]},
+      { title: "老三出行包", items: [
+        ["crate", "航空箱与固定配件", "尿垫、水碗、扎带、姓名联系方式"],
+        ["dog-kit", "老三出行包", "牵引绳、胸背、嘴套、拾便袋、毛巾"],
+        ["dog-food", "狗粮和路上饮水", "按天分装，额外准备一日备用量"]
+      ]},
+      { title: "全家随身物品", items: [
+        ["medicine", "常用药与雨具", "父母常用药、晕车药、薄外套"],
+        ["power", "充电设备", "手机、充电宝、车充与相机电池"]
+      ]}
+    ];
+
+    const overviewDays = document.getElementById("overviewDays");
+    const dayTabs = document.getElementById("dayTabs");
+    const dayDetails = document.getElementById("dayDetails");
+
+    tripDays.forEach((day, index) => {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "day-card";
+      card.dataset.day = index;
+      card.innerHTML = `<div class="day-top"><div><span class="day-date">${day.date} · ${day.weekday}</span><h3 class="day-title">${day.title}</h3><p class="day-desc">${day.short}</p></div><span class="tag ${day.tone === "clay" ? "clay" : ""}">${day.tag}</span></div>`;
+      card.addEventListener("click", () => showDay(index));
+      overviewDays.appendChild(card);
+
+      const tab = document.createElement("button");
+      tab.type = "button";
+      tab.className = "day-tab";
+      tab.setAttribute("role", "tab");
+      tab.dataset.day = index;
+      tab.innerHTML = `<strong>${day.date.slice(3)}</strong><span>${day.weekday}</span>`;
+      tab.addEventListener("click", () => selectDay(index));
+      dayTabs.appendChild(tab);
+
+      const detail = document.createElement("article");
+      detail.className = "day-detail";
+      detail.dataset.day = index;
+      const timeline = day.timeline.map(item => `<li class="${item[3] === "drive" ? "drive" : ""}"><div><time>${item[0]}</time><strong>${item[1]}</strong></div><p>${item[2]}</p></li>`).join("");
+      const tips = day.tips.map(tip => `<p class="tip">${tip}</p>`).join("");
+      const maps = day.maps.map(map => `<a class="map-link" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=${encodeURIComponent(map[1])}">导航到${map[0]}</a>`).join("");
+      detail.innerHTML = `<header class="day-hero"><p class="day-kicker">${day.date} · ${day.weekday}</p><h2>${day.title}</h2><p class="day-summary">${day.summary}</p></header><div class="panel"><ol class="timeline">${timeline}</ol></div><div class="panel"><h3 class="panel-title">当天提醒</h3>${tips}<div class="map-links">${maps}</div></div>`;
+      dayDetails.appendChild(detail);
+    });
+
+    function switchView(id) {
+      document.querySelectorAll(".view").forEach(view => view.classList.toggle("active", view.id === id));
+      document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.go === id));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function selectDay(index) {
+      document.querySelectorAll(".day-tab").forEach((tab, i) => tab.classList.toggle("active", i === index));
+      document.querySelectorAll(".day-detail").forEach((detail, i) => detail.classList.toggle("active", i === index));
+    }
+    function showDay(index) { selectDay(index); switchView("days"); }
+
+    document.querySelectorAll("[data-go]").forEach(btn => btn.addEventListener("click", () => switchView(btn.dataset.go)));
+    selectDay(0);
+
+    let touchX = null;
+    document.getElementById("days").addEventListener("touchstart", event => { touchX = event.touches[0].clientX; }, { passive: true });
+    document.getElementById("days").addEventListener("touchend", event => {
+      if (touchX !== null && event.changedTouches[0].clientX - touchX > 85) switchView("overview");
+      touchX = null;
+    }, { passive: true });
+
+    const saved = JSON.parse(localStorage.getItem("kunming-roadbook-checks") || "{}");
+    const checkWrap = document.getElementById("checkGroups");
+    checkGroups.forEach(group => {
+      const section = document.createElement("section");
+      section.className = "check-group";
+      section.innerHTML = `<h3 class="check-title">${group.title}</h3>`;
+      group.items.forEach(item => {
+        const label = document.createElement("label");
+        label.className = "check-item";
+        label.innerHTML = `<input type="checkbox" data-check="${item[0]}" ${saved[item[0]] ? "checked" : ""}><span class="check-copy"><strong>${item[1]}</strong><small>${item[2]}</small></span>`;
+        section.appendChild(label);
+      });
+      checkWrap.appendChild(section);
+    });
+
+    function updateProgress() {
+      const checks = [...document.querySelectorAll("[data-check]")];
+      const done = checks.filter(c => c.checked).length;
+      document.getElementById("progressText").textContent = `${done} / ${checks.length}`;
+      document.getElementById("progressBar").style.width = `${checks.length ? done / checks.length * 100 : 0}%`;
+      checks.forEach(c => c.closest(".check-item").classList.toggle("done", c.checked));
+    }
+    document.querySelectorAll("[data-check]").forEach(check => check.addEventListener("change", () => {
+      saved[check.dataset.check] = check.checked;
+      localStorage.setItem("kunming-roadbook-checks", JSON.stringify(saved));
+      updateProgress();
+    }));
+    updateProgress();
+
+    const start = new Date("2026-09-23T00:00:00+08:00");
+    const end = new Date("2026-09-28T00:00:00+08:00");
+    const now = new Date();
+    const diff = Math.ceil((start - now) / 86400000);
+    const countdown = document.getElementById("countdown");
+    if (now < start) countdown.textContent = diff > 0 ? `距出发 ${diff} 天` : "明天出发";
+    else if (now < end) countdown.textContent = "旅途中";
+    else countdown.textContent = "旅程已完成";
+
+    const chinaDate = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+    const tripDateStrings = ["2026-09-23", "2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27"];
+    const currentIndex = tripDateStrings.indexOf(chinaDate);
+    if (currentIndex >= 0) {
+      const day = tripDays[currentIndex];
+      document.getElementById("todayLabel").textContent = `今天 · ${day.date}`;
+      document.getElementById("todayTitle").textContent = day.title;
+      document.getElementById("todayNext").textContent = day.short;
+      const todayBtn = document.getElementById("todayBtn");
+      todayBtn.textContent = "打开今日路书";
+      todayBtn.onclick = () => showDay(currentIndex);
+      document.querySelectorAll(".day-card")[currentIndex].classList.add("current");
+      selectDay(currentIndex);
+    } else {
+      document.getElementById("todayBtn").onclick = () => switchView("checklist");
+    }
+  </script>
+</body>
+</html>
